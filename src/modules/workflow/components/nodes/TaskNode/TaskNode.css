@@ -1,0 +1,29 @@
+.task-node {
+  width: 120px;
+  height: 70px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 11px;
+  text-align: center;
+  padding: 5px;
+}
+
+.task-node.active {
+  border-color: aqua;
+  border-width: 2px;
+}
+
+.custom-handle {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease-in;
+}
+.task-node.active ~ .custom-handle {
+  opacity: 1;
+  visibility: visible;
+}

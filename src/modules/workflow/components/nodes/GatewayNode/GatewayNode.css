@@ -1,0 +1,48 @@
+.gateway-node {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #000;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+
+.custom-handle {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease-in;
+}
+
+.gateway-node.active {
+  border-width: 2px;
+  border-color: aqua;
+}
+
+.gateway-node.active ~ .custom-handle {
+  opacity: 1;
+  visibility: visible;
+}
+
+.handle-top {
+  top: -10px;
+}
+
+.handle-right {
+  right: -10px;
+}
+
+.handle-left {
+  left: -10px;
+}
+
+.handle-bottom {
+  bottom: -10px;
+}
+
+.gateway-node__label {
+  text-align: center;
+  position: absolute;
+  font-size: 11px;
+  width: 260%;
+  left: -65%;
+  top: 120%;
+}

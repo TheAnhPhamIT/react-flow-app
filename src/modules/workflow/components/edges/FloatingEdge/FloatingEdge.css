@@ -1,0 +1,29 @@
+.floatingedges {
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.floatingedges .react-flow__handle {
+  opacity: 0;
+}
+
+.edge-label {
+  position: absolute;
+  pointer-events: all;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 50%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+}
+
+.edge-label.active {
+  visibility: visible;
+  opacity: 1;
+}

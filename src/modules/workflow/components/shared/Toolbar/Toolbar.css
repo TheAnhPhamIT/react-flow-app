@@ -1,0 +1,48 @@
+.toolbar {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border: 1px solid hsl(225, 10%, 75%);
+  background-color: hsl(225, 10%, 97%);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  z-index: 5;
+  border-radius: 5px;
+}
+
+.toolbar__item {
+  background-color: transparent;
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: scale 0.1s ease-in;
+}
+
+.toolbar__item:hover {
+  scale: 1.1;
+}
+
+.create-start-node {
+  border-radius: 50%;
+}
+
+.create-end-node {
+  border-radius: 50%;
+  border-width: 2px;
+}
+
+.create-task-node {
+  border-radius: 2px;
+  height: 18px;
+}
+
+.create-gateway-node {
+  transform: rotate(45deg);
+  width: 18px;
+  height: 18px;
+}
