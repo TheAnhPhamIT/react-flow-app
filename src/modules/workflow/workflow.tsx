@@ -69,6 +69,7 @@ export default function Workflow() {
   // set selected node id when a node is clicked, details panel use this state to show node's details
   const onNodeClick = useCallback(
     (e: React.MouseEvent, node: Node) => {
+      console.log(e)
       setSelectedNodeId(node.id);
     },
     [setSelectedNodeId]
