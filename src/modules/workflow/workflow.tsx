@@ -20,11 +20,10 @@ import ContextMenu from "./components/shared/ContextMenu/ContextMenu";
 import { useContextMenu } from "./hooks/useContextMenu";
 import FloatingConnectionLine from "./components/connection-line/FloatingConnectionLine";
 import { DetailsPanel } from "./components/shared/DetailsPanel/DetailsPanel";
-import { useKeyDown } from "./hooks/useKeyDown";
 import { SearchBar } from "./components/shared/SearchBar/SearchBar";
 
 export default function Workflow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, ,onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const ref = useRef<HTMLDivElement>(null);
   const { menu, setMenu, onNodeContextMenu } = useContextMenu(ref.current!);
