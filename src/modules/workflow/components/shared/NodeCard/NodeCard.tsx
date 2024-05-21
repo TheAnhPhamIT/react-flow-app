@@ -31,7 +31,7 @@ const nodeType: Record<CustomNodeType, NodeTypeInfo> = {
 };
 
 export function NodeCard({ type, label }: NodeCardProps) {
-  const { name: typeName, icon } = nodeType[type];
+  const { name: typeName } = nodeType[type];
   return (
     <div className="node-card">
       <div className="node-card__icon"></div>

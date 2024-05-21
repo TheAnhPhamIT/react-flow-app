@@ -11,7 +11,7 @@ import { useHistory } from "./useHistory";
 import { CustomNode } from "../components/nodes/types";
 
 export function useReactflow() {
-  const { currState, addState, prevState, nextState } = useHistory<{
+  const { currState } = useHistory<{
     edges: Edge[];
     nodes: CustomNode[];
   }>({
