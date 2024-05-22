@@ -1,5 +1,3 @@
-import type { OnConnect } from "reactflow";
-
 import { useCallback, useRef } from "react";
 import {
   Background,
@@ -9,6 +7,7 @@ import {
   useNodesState,
   useEdgesState,
   MarkerType,
+  OnConnect,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -50,8 +49,10 @@ export default function Workflow() {
         addEdge(
           {
             ...connection,
+            id: `edge-${Date.now()}`,
             type: "custom",
             markerEnd: { type: MarkerType.Arrow },
+            data: {label: "I'm a edge"}
           },
           edges
         )
@@ -63,7 +64,6 @@ export default function Workflow() {
   const onPaneClick = useCallback(() => {
     setMenu(null);
   }, [setMenu]);
-
 
   return (
     <ReactFlow

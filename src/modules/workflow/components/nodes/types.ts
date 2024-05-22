@@ -1,6 +1,6 @@
 import { Node, NodeProps } from "reactflow";
 
-export type CustomNodeType = "startEvent" | "endEvent" | "task" | "gateway";
+export type CustomNodeType = "startEvent" | "endEvent" | "task" | "gateway" | "textNotation";
 
 export type CustomNodeData = {
   label?: string;

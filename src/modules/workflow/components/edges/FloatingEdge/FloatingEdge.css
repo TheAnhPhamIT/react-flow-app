@@ -9,7 +9,7 @@
   opacity: 0;
 }
 
-.edge-label {
+.edge-btn {
   position: absolute;
   pointer-events: all;
   cursor: pointer;
@@ -21,9 +21,18 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.1s ease-in;
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.edge-label.active {
+.edge-btn.active {
   visibility: visible;
   opacity: 1;
+}
+
+.edge-label {
+  color: #000;
+  font-size: 11px;
+  position: absolute;
+  text-align: center;
 }
