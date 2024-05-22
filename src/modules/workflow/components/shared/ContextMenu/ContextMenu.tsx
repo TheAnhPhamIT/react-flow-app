@@ -41,7 +41,7 @@ export default function ContextMenu({
         },
         type,
         data: {
-          label: "click me now",
+          label: "on the details panel you can edit the node's label",
         },
       };
       addNodes(newNode);

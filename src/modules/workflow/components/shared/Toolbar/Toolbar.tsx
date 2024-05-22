@@ -16,7 +16,7 @@ export function Toolbar() {
           y: 100,
         },
         data: {
-          label: "click me",
+          label: "right click to open the context menu",
         },
       };
 
