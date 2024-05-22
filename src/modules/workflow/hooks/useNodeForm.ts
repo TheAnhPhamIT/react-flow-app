@@ -2,7 +2,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Node, useReactFlow } from "reactflow";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const formSchema = z.object({
   label: z.string(),
@@ -19,10 +19,10 @@ export function useNodeForm(node?: Node | null) {
     },
   });
 
-  useEffect(() => {
-    form.resetField("label", { defaultValue: node?.data.label });
-    form.resetField("customFields", { defaultValue: node?.data.customFields });
-  }, [form, node]);
+  // useEffect(() => {
+  //   form.resetField("label", { defaultValue: node?.data.label });
+  //   form.resetField("customFields", { defaultValue: node?.data.customFields });
+  // }, [form, node]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const updateNodeId = node?.id;

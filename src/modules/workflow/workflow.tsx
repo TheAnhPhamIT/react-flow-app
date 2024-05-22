@@ -93,7 +93,7 @@ export default function Workflow() {
     >
       <Background />
       <Controls />
-      <DetailsPanel nodeId={selectedNodeId} />
+      <DetailsPanel key={selectedNodeId} nodeId={selectedNodeId} />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Toolbar />
       <SearchBar />
