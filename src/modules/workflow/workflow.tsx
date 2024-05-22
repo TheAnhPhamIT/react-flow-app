@@ -1,6 +1,6 @@
-import type { Node, OnConnect } from "reactflow";
+import type { OnConnect } from "reactflow";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import {
   Background,
   Controls,
@@ -27,7 +27,6 @@ export default function Workflow() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const ref = useRef<HTMLDivElement>(null);
   const { menu, setMenu, onNodeContextMenu } = useContextMenu(ref.current!);
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
   // delete node and edges attach to the node when user clicked Backspace key
   // useKeyDown((e: KeyboardEvent) => {
@@ -63,17 +62,8 @@ export default function Workflow() {
   // Close the context menu if it's open whenever the window is clicked.
   const onPaneClick = useCallback(() => {
     setMenu(null);
-    setSelectedNodeId(null);
-  }, [setMenu, setSelectedNodeId]);
+  }, [setMenu]);
 
-  // set selected node id when a node is clicked, details panel use this state to show node's details
-  const onNodeClick = useCallback(
-    (e: React.MouseEvent, node: Node) => {
-      console.log(e)
-      setSelectedNodeId(node.id);
-    },
-    [setSelectedNodeId]
-  );
 
   return (
     <ReactFlow
@@ -88,12 +78,11 @@ export default function Workflow() {
       onNodeContextMenu={onNodeContextMenu}
       onPaneClick={onPaneClick}
       connectionLineComponent={FloatingConnectionLine}
-      onNodeClick={onNodeClick}
       fitView
     >
       <Background />
       <Controls />
-      <DetailsPanel key={selectedNodeId} nodeId={selectedNodeId} />
+      <DetailsPanel />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Toolbar />
       <SearchBar />

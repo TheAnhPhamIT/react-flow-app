@@ -69,7 +69,6 @@ export default function ContextMenu({
       <button onClick={() => createNode("endEvent")}>create end event</button>
       <button onClick={() => createNode("gateway")}>create gateway</button>
       <button onClick={() => createNode("task")}>create task</button>
-      <button>edit</button>
       <button onClick={deleteNode}>delete</button>
     </div>
   );
