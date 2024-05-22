@@ -1,4 +1,4 @@
-import { ConnectionLineComponentProps, getBezierPath } from "reactflow";
+import { ConnectionLineComponentProps, Node, getBezierPath } from "reactflow";
 
 import { getEdgeParams } from "../../utils";
 
@@ -20,7 +20,7 @@ function FloatingConnectionLine({
     positionAbsolute: { x: toX, y: toY },
   };
 
-  const { sx, sy } = getEdgeParams(fromNode, targetNode);
+  const { sx, sy } = getEdgeParams(fromNode, targetNode as Node);
   const [edgePath] = getBezierPath({
     sourceX: sx,
     sourceY: sy,
