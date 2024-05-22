@@ -7,11 +7,11 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { useHistory } from "./useHistory";
+import { useUndoable } from "./useUndoable";
 import { CustomNode } from "../components/nodes/types";
 
 export function useReactflow() {
-  const { currState } = useHistory<{
+  const { currState } = useUndoable<{
     edges: Edge[];
     nodes: CustomNode[];
   }>({
