@@ -1,18 +1,25 @@
-import { useReactFlow } from "reactflow";
+import { Node, useOnSelectionChange } from "reactflow";
 import "./DetailsPanel.css";
 import { useState } from "react";
 import { useNodeForm } from "../../../hooks/useNodeForm";
 import { CollapsibleContent } from "../CollapsibleContent/CollapsibleContent";
-type DetailsPanelProps = {
-  nodeId: string | null;
-};
+// type DetailsPanelProps = {
+//   nodeId: string | null;
+// };
 
-export function DetailsPanel({ nodeId }: DetailsPanelProps) {
-  const { getNode } = useReactFlow();
-  const node = nodeId ? getNode(nodeId) : null;
+export function DetailsPanel() {
+  // const { getNode } = useReactFlow();
+  // const node = nodeId ? getNode(nodeId) : null;
+  const [node, setNode] = useState<Node | null>(null)
   const [isCollapse, setIsCollapse] = useState(false);
-
   const { form, onSubmit } = useNodeForm(node);
+
+  useOnSelectionChange({
+    onChange: ({ nodes }) => {
+      const firstSelectedNode = nodes.find(node => node.selected);
+      setNode(firstSelectedNode || null)
+    },
+  });
 
   function collapsePanel() {
     setIsCollapse((prev) => !prev);
@@ -38,7 +45,7 @@ export function DetailsPanel({ nodeId }: DetailsPanelProps) {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="input-group">
               <label htmlFor="id">ID</label>
-              <input type="text" name="id" value={node?.id} disabled />
+              <input type="text" name="id" value={node?.id || ""} disabled />
             </div>
             <div className="input-group">
               <label htmlFor="label">Label</label>
