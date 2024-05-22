@@ -5,8 +5,9 @@ import {
   EdgeProps,
   EdgeLabelRenderer,
   useReactFlow,
+  BaseEdge,
 } from "reactflow";
-import { getEdgeParams } from "../../../utils";
+import { getDistanceBetweenTwoPoints, getEdgeParams } from "../../../utils";
 
 import "./FloatingEdge.css";
 
@@ -15,8 +16,8 @@ function FloatingEdge({
   source,
   target,
   markerEnd,
-  style,
   selected,
+  data,
 }: EdgeProps) {
   const sourceNode = useStore(
     useCallback((store) => store.nodeInternals.get(source), [source])
@@ -45,27 +46,35 @@ function FloatingEdge({
     targetY: ty,
   });
 
+  const labelWidth = getDistanceBetweenTwoPoints(sx, sy, tx, ty)
+
   return (
     <>
-      <path
+      {/* <path
         id={id}
         className="react-flow__edge-path"
         d={edgePath}
         markerEnd={markerEnd}
         style={style}
-      />
+        onClick={() => console.log(`${id} is clicked`)}
+      /> */}
+      <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} />
       <EdgeLabelRenderer>
         <button
           style={{
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
           }}
-          className={`edge-label nodrag nopan ${selected ? "active" : ""}`}
+          className={`edge-btn nodrag nopan ${selected ? "active" : ""}`}
           onClick={() => {
             setEdges((es) => es.filter((e) => e.id !== id));
           }}
         >
           x
         </button>
+        {data.label && <p className="edge-label nodrag nopan" style={{
+            width: (labelWidth - 20) + 'px',
+            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+          }}>{data.label}</p>}
       </EdgeLabelRenderer>
     </>
   );

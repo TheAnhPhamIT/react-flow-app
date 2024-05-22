@@ -28,6 +28,10 @@ const nodeType: Record<CustomNodeType, NodeTypeInfo> = {
     name: "Gateway",
     icon: "",
   },
+  textNotation: {
+    name: "Text Notation",
+    icon: "",
+  }
 };
 
 export function NodeCard({ type, label }: NodeCardProps) {

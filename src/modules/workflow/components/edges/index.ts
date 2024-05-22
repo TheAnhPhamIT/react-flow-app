@@ -1,6 +1,6 @@
 import { MarkerType, type Edge, type EdgeTypes } from "reactflow";
-// import { CustomEdge } from "./CustomEdge/CustomeEdge";
 import FloatingEdge from "./FloatingEdge/FloatingEdge";
+import DashEdge from "./DashEdge/DashEdge";
 
 export const initialEdges = [
   {
@@ -29,4 +29,5 @@ export const initialEdges = [
 export const edgeTypes = {
   custom: FloatingEdge,
   floating: FloatingEdge,
+  dash: DashEdge,
 } satisfies EdgeTypes;

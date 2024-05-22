@@ -30,7 +30,7 @@ export default function ContextMenu({
   }, [id, setNodes, setEdges]);
 
   const createNode = useCallback(
-    (type: CustomNodeType) => {
+    (nodeType: CustomNodeType) => {
       const node = getNode(id);
       if (!node) return;
       const newNode: CustomNode = {
@@ -39,7 +39,7 @@ export default function ContextMenu({
           x: node.position.x + 150,
           y: node.position.y,
         },
-        type,
+        type: nodeType,
         data: {
           label: "on the details panel you can edit the node's label",
         },
@@ -47,10 +47,11 @@ export default function ContextMenu({
       addNodes(newNode);
       const newEdge: Edge = {
         id: `edge-${Date.now()}`,
-        type: "custom",
+        type: nodeType == "textNotation" ? "dash" : "custom",
         source: node.id,
         target: newNode.id,
         markerEnd: { type: MarkerType.Arrow },
+        data: {label: "I'm a edge"}
       };
       addEdges(newEdge);
     },
@@ -69,6 +70,7 @@ export default function ContextMenu({
       <button onClick={() => createNode("endEvent")}>create end event</button>
       <button onClick={() => createNode("gateway")}>create gateway</button>
       <button onClick={() => createNode("task")}>create task</button>
+      <button onClick={() => createNode("textNotation")}>create text notation</button>
       <button onClick={deleteNode}>delete</button>
     </div>
   );

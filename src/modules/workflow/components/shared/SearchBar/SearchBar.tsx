@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDebouncedValue } from "../../../hooks/useDebouncedValue";
-import { Node, useStoreApi } from "reactflow";
+import { Node, useReactFlow, useStoreApi } from "reactflow";
 import "./SearchBar.css";
 
 export function SearchBar() {
@@ -8,6 +8,7 @@ export function SearchBar() {
   const [openSearchInput, setOpenSearchInput] = useState(false);
   const debouncedKeyword = useDebouncedValue(keyword, 1000);
   const { addSelectedNodes, getNodes } = useStoreApi().getState();
+  const {setCenter, getViewport} = useReactFlow();
 
   useEffect(() => {
     if (!debouncedKeyword) {
@@ -24,7 +25,12 @@ export function SearchBar() {
     };
     const nodes = searchNodeByKeyword(debouncedKeyword);
     addSelectedNodes(nodes.map((node) => node.id));
-  }, [debouncedKeyword, addSelectedNodes, getNodes]);
+    if(nodes.length > 0) {
+      const {zoom} = getViewport();
+      const {x, y} = nodes[0].position;
+      setCenter(x, y, {zoom: zoom >= 1.2 ? zoom : 1.2, duration: 600})
+    }
+  }, [debouncedKeyword, addSelectedNodes, getNodes, getViewport, setCenter]);
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const keyword = e.currentTarget.value;
@@ -44,9 +50,9 @@ export function SearchBar() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
