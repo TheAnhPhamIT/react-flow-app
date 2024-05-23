@@ -24,6 +24,7 @@ export function Toolbar() {
     },
     [addNodes]
   );
+
   return (
     <div className="toolbar">
       <button
@@ -41,6 +42,10 @@ export function Toolbar() {
       <button
         className="toolbar__item create-gateway-node"
         onClick={() => createNodeByType("gateway")}
+      ></button>
+      <button
+        className="toolbar__item create-pool-node"
+        onClick={() => createNodeByType("pool")}
       ></button>
     </div>
   );

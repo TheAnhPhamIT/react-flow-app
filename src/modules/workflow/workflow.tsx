@@ -1,6 +1,5 @@
 import { useCallback, useRef } from "react";
 import {
-  Background,
   Controls,
   ReactFlow,
   addEdge,
@@ -8,6 +7,8 @@ import {
   useEdgesState,
   MarkerType,
   OnConnect,
+  useReactFlow,
+  Node,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -22,10 +23,49 @@ import { DetailsPanel } from "./components/shared/DetailsPanel/DetailsPanel";
 import { SearchBar } from "./components/shared/SearchBar/SearchBar";
 
 export default function Workflow() {
-  const [nodes, ,onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const ref = useRef<HTMLDivElement>(null);
   const { menu, setMenu, onNodeContextMenu } = useContextMenu(ref.current!);
+
+  const { getIntersectingNodes } = useReactFlow();
+
+  const onNodeDragStop = useCallback(
+    (
+      _: React.MouseEvent<Element, MouseEvent>,
+      node: Node<string | undefined>
+    ) => {
+      if (node.type === "pool") {
+        const intersections = getIntersectingNodes(node)
+          .filter((n) => !n.parentId)
+          .map((n) => n.id);
+        if (intersections.length <= 0) return;
+        setNodes((ns) =>
+          ns.map((n) => {
+            if (intersections.indexOf(n.id) === -1) return n;
+            n.position = {
+              x: n.positionAbsolute!.x - node.position.x,
+              y: n.positionAbsolute!.y - node.position.y,
+            };
+            n.parentId = node.id;
+            return n;
+          })
+        );
+      } else {
+        const intersectionPoolNode = getIntersectingNodes(node).find(
+          (node) => node.type === "pool"
+        );
+        setNodes((ns) =>
+          ns.map((n) => {
+            if (n.id !== node.id) return n;
+            n.parentId = intersectionPoolNode ? intersectionPoolNode.id : "";
+            return n;
+          })
+        );
+      }
+    },
+    [getIntersectingNodes, setNodes]
+  );
 
   // delete node and edges attach to the node when user clicked Backspace key
   // useKeyDown((e: KeyboardEvent) => {
@@ -52,7 +92,7 @@ export default function Workflow() {
             id: `edge-${Date.now()}`,
             type: "custom",
             markerEnd: { type: MarkerType.Arrow },
-            data: {label: "I'm a edge"}
+            data: { label: "I'm a edge" },
           },
           edges
         )
@@ -79,8 +119,9 @@ export default function Workflow() {
       onPaneClick={onPaneClick}
       connectionLineComponent={FloatingConnectionLine}
       fitView
+      onNodeDragStop={onNodeDragStop}
+      className="intersection-flow"
     >
-      <Background />
       <Controls />
       <DetailsPanel />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}

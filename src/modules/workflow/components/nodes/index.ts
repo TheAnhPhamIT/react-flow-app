@@ -5,6 +5,7 @@ import { GatewayNode } from "./GatewayNode/GatewayNode";
 import { TaskNode } from "./TaskNode/TaskNode";
 import { CustomNode } from "./types";
 import { TextNotationNode } from "./TextNotationNode/TextNotationNode";
+import { PoolNode } from "./PoolNode/PoolNode";
 
 export const initialNodes = [
   {
@@ -38,5 +39,6 @@ export const nodeTypes = {
   endEvent: EndNode,
   gateway: GatewayNode,
   task: TaskNode,
-  textNotation: TextNotationNode
+  textNotation: TextNotationNode,
+  pool: PoolNode,
 } satisfies NodeTypes;
