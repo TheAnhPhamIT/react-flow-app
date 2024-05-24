@@ -43,6 +43,7 @@ export default function ContextMenu({
         data: {
           label: "on the details panel you can edit the node's label",
         },
+        parentId: node.parentId || "",
       };
       addNodes(newNode);
       const newEdge: Edge = {
@@ -51,7 +52,7 @@ export default function ContextMenu({
         source: node.id,
         target: newNode.id,
         markerEnd: { type: MarkerType.Arrow },
-        data: {label: "I'm a edge"}
+        data: { label: "I'm a edge" },
       };
       addEdges(newEdge);
     },
@@ -70,7 +71,9 @@ export default function ContextMenu({
       <button onClick={() => createNode("endEvent")}>create end event</button>
       <button onClick={() => createNode("gateway")}>create gateway</button>
       <button onClick={() => createNode("task")}>create task</button>
-      <button onClick={() => createNode("textNotation")}>create text notation</button>
+      <button onClick={() => createNode("textNotation")}>
+        create text notation
+      </button>
       <button onClick={deleteNode}>delete</button>
     </div>
   );

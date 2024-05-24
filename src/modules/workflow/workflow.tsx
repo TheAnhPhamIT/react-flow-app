@@ -28,13 +28,19 @@ export default function Workflow() {
   const ref = useRef<HTMLDivElement>(null);
   const { menu, setMenu, onNodeContextMenu } = useContextMenu(ref.current!);
 
-  const { getIntersectingNodes } = useReactFlow();
+  const {
+    getIntersectingNodes,
+    screenToFlowPosition,
+    addNodes,
+    // isNodeIntersecting,
+  } = useReactFlow();
 
   const onNodeDragStop = useCallback(
     (
       _: React.MouseEvent<Element, MouseEvent>,
       node: Node<string | undefined>
     ) => {
+      if (node.parentId) return;
       if (node.type === "pool") {
         const intersections = getIntersectingNodes(node)
           .filter((n) => !n.parentId)
@@ -48,6 +54,7 @@ export default function Workflow() {
               y: n.positionAbsolute!.y - node.position.y,
             };
             n.parentId = node.id;
+            n.extent = "parent";
             return n;
           })
         );
@@ -55,17 +62,62 @@ export default function Workflow() {
         const intersectionPoolNode = getIntersectingNodes(node).find(
           (node) => node.type === "pool"
         );
+        if (!intersectionPoolNode) return;
         setNodes((ns) =>
           ns.map((n) => {
             if (n.id !== node.id) return n;
-            n.parentId = intersectionPoolNode ? intersectionPoolNode.id : "";
-            return n;
+            node.parentId = intersectionPoolNode ? intersectionPoolNode.id : "";
+            node.position = {
+              x: node.positionAbsolute!.x - intersectionPoolNode.position.x,
+              y: node.positionAbsolute!.y - intersectionPoolNode.position.y,
+            };
+            node.extent = "parent";
+            return node;
           })
         );
       }
     },
     [getIntersectingNodes, setNodes]
   );
+
+  // const onNodeDragStop = useCallback(
+  //   (_: React.MouseEvent<Element, MouseEvent>, node: Node) => {
+  //     if (node.type === "pool") {
+  //       return;
+  //     }
+  //     nodes.forEach((nd) => {
+  //       // Check if there's a group node in the array of nodes on the screen
+  //       if (nd.type === "pool") {
+  //         //safety check to make sure there's a height and width
+  //         if (nd.height && nd.width) {
+  //           const rec = { height: nd.height, width: nd.width, ...nd.position };
+
+  //           // Check if the dragged node is inside the group
+  //           if (isNodeIntersecting(node, rec, false)) {
+  //             //Check if dragged node isn't already a child to the group
+  //             if (!node.parentId) {
+  //               node.parentId = nd.id;
+  //               node.extent = "parent";
+  //               node.position = {
+  //                 x: node.positionAbsolute!.x - nd.position.x,
+  //                 y: node.positionAbsolute!.y - nd.position.y,
+  //               };
+  //               setNodes((nodes) =>
+  //                 nodes.map((n) => {
+  //                   if (n.id === node.id) {
+  //                     n = node;
+  //                   }
+  //                   return n;
+  //                 })
+  //               );
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+  //   },
+  //   [nodes, isNodeIntersecting, setNodes]
+  // );
 
   // delete node and edges attach to the node when user clicked Backspace key
   // useKeyDown((e: KeyboardEvent) => {
@@ -105,6 +157,47 @@ export default function Workflow() {
     setMenu(null);
   }, [setMenu]);
 
+  // create new node when drop
+  const onDrop = useCallback(
+    (event: React.DragEvent) => {
+      event.preventDefault();
+
+      const type = event.dataTransfer.getData("application/reactflow");
+
+      if (typeof type === "undefined" || !type) {
+        return;
+      }
+      const position = screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+
+      const newNode = {
+        id: `node-${Date.now()}`,
+        type,
+        position,
+        data: { label: "I'm a node" },
+      };
+
+      addNodes(newNode);
+
+      // setNodes((nds) => nds.concat(newNode as Node));
+    },
+    [addNodes, screenToFlowPosition]
+  );
+
+  const onDragOver = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
+  const onNodeClick = (
+    _: React.MouseEvent<Element, MouseEvent>,
+    node: Node
+  ) => {
+    console.log(node);
+  };
+
   return (
     <ReactFlow
       ref={ref}
@@ -120,7 +213,9 @@ export default function Workflow() {
       connectionLineComponent={FloatingConnectionLine}
       fitView
       onNodeDragStop={onNodeDragStop}
-      className="intersection-flow"
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+      onNodeClick={onNodeClick}
     >
       <Controls />
       <DetailsPanel />
