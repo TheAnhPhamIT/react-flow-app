@@ -9,6 +9,7 @@ import {
   OnConnect,
   useReactFlow,
   Node,
+  ConnectionMode,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -35,7 +36,7 @@ export default function Workflow() {
       _: React.MouseEvent<Element, MouseEvent>,
       node: Node<string | undefined>
     ) => {
-      if (node.parentId) return;
+      if (node.parentId || node.type === "pool") return;
       const intersectionPoolNode = getIntersectingNodes(node).find(
         (node) => node.type === "pool"
       );
@@ -150,6 +151,7 @@ export default function Workflow() {
       onNodeDragStop={onNodeDragStop}
       onDrop={onDrop}
       onDragOver={onDragOver}
+      connectionMode={ConnectionMode.Loose}
     >
       <Controls />
       <DetailsPanel />
