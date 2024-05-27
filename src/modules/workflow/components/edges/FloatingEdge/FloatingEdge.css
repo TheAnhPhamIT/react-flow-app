@@ -21,7 +21,7 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.1s ease-in;
-  z-index: 5;
+  z-index: 1002;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
@@ -35,4 +35,10 @@
   font-size: 11px;
   position: absolute;
   text-align: center;
+  z-index: 1001;
+}
+
+/* when inside a group z-index of an edge must be higher than group node so it can be clickable */
+.react-flow__edges {
+  z-index: 1001 !important;
 }

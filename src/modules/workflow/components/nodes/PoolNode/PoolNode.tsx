@@ -6,15 +6,12 @@ export function PoolNode({ selected }: CustomNodeProps) {
   return (
     <>
       <NodeResizer minWidth={300} minHeight={100} isVisible={selected} />
-      <div
-        className="pool-node"
-        style={{
-          minWidth: 300,
-          minHeight: 100,
-          backgroundColor: "orange",
-        }}
-        draggable
-      ></div>
+      <div className="pool-node">
+        {/* <div className="pool-node__label">
+          <p>{data.label}</p>
+        </div> */}
+      </div>
+
       <Handle
         type="target"
         position={Position.Top}
