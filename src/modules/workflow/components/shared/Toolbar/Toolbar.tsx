@@ -59,12 +59,12 @@ export function Toolbar() {
         className="toolbar__item create-gateway-node"
         // onClick={() => createNodeByType("gateway")}
       ></div>
-      <div
+      {/* <div
         onDragStart={(event: React.DragEvent) => onDragStart(event, "pool")}
         draggable
         className="toolbar__item create-pool-node"
         // onClick={() => createNodeByType("pool")}
-      ></div>
+      ></div> */}
     </div>
   );
 }
