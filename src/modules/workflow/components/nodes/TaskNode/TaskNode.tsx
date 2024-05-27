@@ -20,6 +20,18 @@ export function TaskNode({ data, selected }: CustomNodeProps) {
         id="right"
         className="custom-handle"
       />
+      <Handle
+        type="source"
+        position={Position.Top}
+        id="top"
+        className="custom-handle"
+      />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="bottom"
+        className="custom-handle"
+      />
     </>
   );
 }
