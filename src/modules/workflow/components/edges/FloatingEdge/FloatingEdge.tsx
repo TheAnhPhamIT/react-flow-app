@@ -46,7 +46,7 @@ function FloatingEdge({
     targetY: ty,
   });
 
-  const labelWidth = getDistanceBetweenTwoPoints(sx, sy, tx, ty)
+  const labelWidth = getDistanceBetweenTwoPoints(sx, sy, tx, ty);
 
   return (
     <>
@@ -58,7 +58,12 @@ function FloatingEdge({
         style={style}
         onClick={() => console.log(`${id} is clicked`)}
       /> */}
-      <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} />
+      <BaseEdge
+        id={id}
+        path={edgePath}
+        markerEnd={markerEnd}
+        style={{ zIndex: 1001 }}
+      />
       <EdgeLabelRenderer>
         <button
           style={{
@@ -71,10 +76,17 @@ function FloatingEdge({
         >
           x
         </button>
-        {data.label && <p className="edge-label nodrag nopan" style={{
-            width: (labelWidth - 20) + 'px',
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-          }}>{data.label}</p>}
+        {data.label && (
+          <p
+            className="edge-label nodrag nopan"
+            style={{
+              width: labelWidth - 20 + "px",
+              transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+            }}
+          >
+            {data.label}
+          </p>
+        )}
       </EdgeLabelRenderer>
     </>
   );

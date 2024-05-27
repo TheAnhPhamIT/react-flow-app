@@ -20,7 +20,7 @@ export default function ContextMenu({
   bottom,
   ...props
 }: ContextMenuProps) {
-  const { getNode, setNodes, addNodes, setEdges, addEdges } = useReactFlow();
+  const { getNode, setNodes, setEdges } = useReactFlow();
 
   const deleteNode = useCallback(() => {
     setNodes((nodes) => nodes.filter((node) => node.id !== id));
@@ -45,18 +45,18 @@ export default function ContextMenu({
         },
         parentId: node.parentId || "",
       };
-      addNodes(newNode);
+      setNodes((nodes) => nodes.concat(newNode));
       const newEdge: Edge = {
         id: `edge-${Date.now()}`,
         type: nodeType == "textNotation" ? "dash" : "custom",
         source: node.id,
         target: newNode.id,
         markerEnd: { type: MarkerType.Arrow },
-        data: { label: "I'm a edge" },
+        data: { label: "edge" },
       };
-      addEdges(newEdge);
+      setEdges((edges) => edges.concat(newEdge));
     },
-    [id, getNode, addNodes, addEdges]
+    [id, getNode, setNodes, setEdges]
   );
 
   return (
