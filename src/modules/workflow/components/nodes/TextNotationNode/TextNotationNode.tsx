@@ -17,7 +17,7 @@ export function TextNotationNode({ data, selected }: CustomNodeProps) {
         className="custom-handle"
       />
       <Handle
-        type="source"
+        type="target"
         position={Position.Right}
         id="right"
         className="custom-handle"
@@ -29,7 +29,7 @@ export function TextNotationNode({ data, selected }: CustomNodeProps) {
         className="custom-handle"
       />
       <Handle
-        type="source"
+        type="target"
         position={Position.Bottom}
         id="bottom"
         className="custom-handle"

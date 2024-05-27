@@ -31,6 +31,10 @@ const nodeType: Record<CustomNodeType, NodeTypeInfo> = {
   textNotation: {
     name: "Text Notation",
     icon: "",
+  },
+  pool: {
+    name: "Pool",
+    icon: "",
   }
 };
 

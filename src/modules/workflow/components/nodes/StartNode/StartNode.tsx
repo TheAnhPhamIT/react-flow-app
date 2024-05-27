@@ -5,7 +5,7 @@ import { CustomNodeProps } from "../types";
 export function StartNode({ selected, data }: CustomNodeProps) {
   return (
     <>
-      <div className={`start-node ${selected ? "active" : null}`}></div>
+      <div className={`start-node ${selected ? "active" : ""}`}></div>
       <Handle
         type="source"
         position={Position.Right}
