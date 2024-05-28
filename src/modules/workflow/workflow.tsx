@@ -21,7 +21,7 @@ import { Toolbar } from './components/shared/Toolbar/Toolbar';
 import ContextMenu from './components/shared/ContextMenu/ContextMenu';
 import { useContextMenu } from './hooks/useContextMenu';
 import FloatingConnectionLine from './components/connection-line/FloatingConnectionLine';
-import { DetailsPanel } from './components/shared/DetailsPanel/DetailsPanel';
+// import { DetailsPanel } from './components/shared/DetailsPanel/DetailsPanel';
 import { SearchBar } from './components/shared/SearchBar/SearchBar';
 
 export default function Workflow() {
@@ -159,7 +159,7 @@ export default function Workflow() {
             connectionMode={ConnectionMode.Loose}
         >
             <Controls />
-            <DetailsPanel />
+            {/* <DetailsPanel /> */}
             {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
             <Toolbar />
             <SearchBar />

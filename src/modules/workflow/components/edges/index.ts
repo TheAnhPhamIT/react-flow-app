@@ -12,7 +12,7 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
         selected: false,
     },
@@ -39,8 +39,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869456014',
@@ -51,8 +52,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869532373',
@@ -63,8 +65,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: 'no',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869553093',
@@ -75,8 +78,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: 'yes',
         },
+        selected: false,
     },
     {
         source: 'node-1716869532373',
@@ -89,8 +93,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869577709',
@@ -101,8 +106,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869631670',
@@ -113,8 +119,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869742878',
@@ -125,8 +132,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716869860284',
@@ -137,8 +145,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716870052717',
@@ -149,8 +158,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         source: 'node-1716869742878',
@@ -163,8 +173,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716870094205',
@@ -175,8 +186,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
     {
         id: 'edge-1716870110324',
@@ -187,8 +199,9 @@ export const initialEdges = [
             type: MarkerType.Arrow,
         },
         data: {
-            label: 'edge',
+            label: '',
         },
+        selected: false,
     },
 ] satisfies Edge[];
 
