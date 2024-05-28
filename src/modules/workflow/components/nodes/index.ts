@@ -12,49 +12,35 @@ export const initialNodes = [
         id: 'node-1716869387264',
         type: 'pool',
         position: {
-            x: -336.6236145147326,
-            y: 321.8425805210315,
+            x: -78.16786399799742,
+            y: 293.96990154373657,
         },
         data: {
             label: 'Restaurant',
         },
         width: 1002,
         height: 257,
-        selected: false,
-        dragging: false,
-        positionAbsolute: {
-            x: -336.6236145147326,
-            y: 321.8425805210315,
-        },
         style: {
             width: 1002,
             height: 257,
         },
-        resizing: false,
     },
     {
         id: 'node-1716869183568',
         type: 'pool',
         position: {
-            x: -204.5029301283328,
-            y: 113.09776248981852,
+            x: -74.4304282342896,
+            y: 102.96224286171126,
         },
         data: {
             label: 'Customer',
         },
         width: 718,
         height: 134,
-        selected: false,
-        dragging: false,
-        positionAbsolute: {
-            x: -204.5029301283328,
-            y: 113.09776248981852,
-        },
         style: {
             width: 718,
             height: 134,
         },
-        resizing: false,
     },
     {
         id: 'node-1716869178889',
@@ -68,12 +54,6 @@ export const initialNodes = [
         },
         width: 30,
         height: 30,
-        selected: false,
-        positionAbsolute: {
-            x: -113.43713373395845,
-            y: 159.60708583724005,
-        },
-        dragging: false,
         parentId: 'node-1716869183568',
         extent: 'parent',
     },
@@ -90,12 +70,6 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: -23.307938111119114,
-            y: 141.41848703911526,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869265766',
@@ -110,17 +84,10 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 211,
         height: 43,
-        selected: false,
-        positionAbsolute: {
-            x: 88.04128944286566,
-            y: 3.3090040359658417,
-        },
-        dragging: false,
         style: {
             width: 211,
             height: 43,
         },
-        resizing: false,
     },
     {
         id: 'node-1716869419367',
@@ -134,12 +101,6 @@ export const initialNodes = [
         },
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: -377.6236145147326,
-            y: 365.8425805210315,
-        },
-        dragging: false,
         parentId: 'node-1716869387264',
         extent: 'parent',
     },
@@ -156,18 +117,12 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 25,
         height: 25,
-        selected: false,
-        positionAbsolute: {
-            x: -204.62361451473248,
-            y: 389.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869532373',
         position: {
-            x: 344.0000000000001,
-            y: 5,
+            x: 342.3107467286489,
+            y: 4.155373364324419,
         },
         type: 'task',
         data: {
@@ -176,18 +131,12 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: -75.62361451473248,
-            y: 312.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869553093',
         position: {
-            x: 392.0000000000001,
-            y: 127,
+            x: 387.7768668216221,
+            y: 133.75701308540482,
         },
         type: 'gateway',
         data: {
@@ -196,12 +145,6 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 25,
         height: 25,
-        selected: false,
-        positionAbsolute: {
-            x: -27.62361451473248,
-            y: 434.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869577709',
@@ -216,12 +159,6 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: 37.37638548526752,
-            y: 411.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869631669',
@@ -236,12 +173,6 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: 222.37638548526752,
-            y: 413.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869742878',
@@ -256,12 +187,6 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: 380.3763854852675,
-            y: 415.8425805210315,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716869860284',
@@ -276,12 +201,6 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: 167.69206188888086,
-            y: 141.41848703911526,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716870052717',
@@ -296,12 +215,6 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
-        selected: false,
-        positionAbsolute: {
-            x: 332.69206188888086,
-            y: 143.41848703911526,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716870094205',
@@ -316,12 +229,6 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 30,
         height: 30,
-        selected: false,
-        positionAbsolute: {
-            x: 512.692061888881,
-            y: 164.41848703911526,
-        },
-        dragging: false,
     },
     {
         id: 'node-1716870110324',
@@ -336,12 +243,6 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 30,
         height: 30,
-        selected: false,
-        positionAbsolute: {
-            x: 540.3763854852675,
-            y: 436.8425805210315,
-        },
-        dragging: false,
     },
 ] satisfies CustomNode[];
 

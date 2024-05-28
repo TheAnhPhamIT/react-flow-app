@@ -34,8 +34,13 @@
   color: #000;
   font-size: 11px;
   position: absolute;
+  top: 0;
   text-align: center;
   z-index: 1001;
+}
+
+.edge-label:focus {
+  outline: 1px solid gray;
 }
 
 /* when inside a group z-index of an edge must be higher than group node so it can be clickable */
