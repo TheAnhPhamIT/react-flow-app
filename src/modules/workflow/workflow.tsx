@@ -23,12 +23,19 @@ import { useContextMenu } from './hooks/useContextMenu';
 import FloatingConnectionLine from './components/connection-line/FloatingConnectionLine';
 // import { DetailsPanel } from './components/shared/DetailsPanel/DetailsPanel';
 import { SearchBar } from './components/shared/SearchBar/SearchBar';
+import EdgeContextMenu from './components/shared/EdgeContextMenu/EdgeContextMenu';
+import { useEdgeContextMenu } from './hooks/useEdgeContextMenu';
 
 export default function Workflow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const ref = useRef<HTMLDivElement>(null);
     const { menu, setMenu, onNodeContextMenu } = useContextMenu(ref.current!);
+    const {
+        menu: edgeMenu,
+        setMenu: setEdgeMenu,
+        onEdgeContextMenu,
+    } = useEdgeContextMenu(ref.current!);
 
     const { getIntersectingNodes, screenToFlowPosition } = useReactFlow();
 
@@ -99,7 +106,8 @@ export default function Workflow() {
     // Close the context menu if it's open whenever the window is clicked.
     const onPaneClick = useCallback(() => {
         setMenu(null);
-    }, [setMenu]);
+        setEdgeMenu(null);
+    }, [setMenu, setEdgeMenu]);
 
     // create new node when drop
     const onDrop = useCallback(
@@ -150,8 +158,10 @@ export default function Workflow() {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onNodeContextMenu={onNodeContextMenu}
+            onEdgeContextMenu={onEdgeContextMenu}
             onPaneClick={onPaneClick}
             connectionLineComponent={FloatingConnectionLine}
+            onNodeClick={onPaneClick}
             fitView
             onNodeDragStop={onNodeDragStop}
             onDrop={onDrop}
@@ -161,12 +171,43 @@ export default function Workflow() {
             <Controls />
             {/* <DetailsPanel /> */}
             {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
+            {edgeMenu && (
+                <EdgeContextMenu onClick={onPaneClick} {...edgeMenu} />
+            )}
             <Toolbar />
             <SearchBar />
             <Panel position='top-right'>
                 <button onClick={() => console.log(nodes, edges)}>
                     Log nodes and edges
                 </button>
+                <div
+                    style={{
+                        maxWidth: '250px',
+                        wordBreak: 'break-word',
+                        backgroundColor: '#fff',
+                        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        marginTop: '10px',
+                    }}
+                >
+                    <h3>How to use?</h3>
+                    <ul>
+                        <li>
+                            Create new node by drop and drag from toolbar on the
+                            top left corner
+                        </li>
+                        <li>
+                            Right click on target node or edge to open context
+                            menu
+                        </li>
+                        <li>Edit node's content or edge's content by click</li>
+                        <li>
+                            Search node with search bar on the top left corner
+                            or by use hotkey "ctrl+f"
+                        </li>
+                    </ul>
+                </div>
             </Panel>
         </ReactFlow>
     );
