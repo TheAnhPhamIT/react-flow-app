@@ -70,6 +70,7 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716869265766',
@@ -117,6 +118,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 25,
         height: 25,
+        extent: 'parent',
     },
     {
         id: 'node-1716869532373',
@@ -131,6 +133,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716869553093',
@@ -145,6 +148,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 25,
         height: 25,
+        extent: 'parent',
     },
     {
         id: 'node-1716869577709',
@@ -159,6 +163,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716869631669',
@@ -173,6 +178,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716869742878',
@@ -187,6 +193,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716869860284',
@@ -201,6 +208,7 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716870052717',
@@ -215,6 +223,7 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 120,
         height: 70,
+        extent: 'parent',
     },
     {
         id: 'node-1716870094205',
@@ -229,6 +238,7 @@ export const initialNodes = [
         parentId: 'node-1716869183568',
         width: 30,
         height: 30,
+        extent: 'parent',
     },
     {
         id: 'node-1716870110324',
@@ -243,6 +253,7 @@ export const initialNodes = [
         parentId: 'node-1716869387264',
         width: 30,
         height: 30,
+        extent: 'parent',
     },
 ] satisfies CustomNode[];
 
