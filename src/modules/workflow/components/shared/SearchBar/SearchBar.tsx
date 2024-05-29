@@ -63,6 +63,9 @@ export function SearchBar() {
                         inputRef.current?.focus();
                     }
                     setOpenSearchInput((prev) => !prev);
+                    if (openSearchInput) {
+                        setKeyword('');
+                    }
                 }}
             >
                 <svg
