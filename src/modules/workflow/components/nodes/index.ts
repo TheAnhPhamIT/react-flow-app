@@ -18,11 +18,11 @@ export const initialNodes = [
         data: {
             label: 'Restaurant',
         },
-        width: 1002,
-        height: 257,
+        width: 1001,
+        height: 202,
         style: {
-            width: 1002,
-            height: 257,
+            width: 1001,
+            height: 202,
         },
     },
     {
@@ -60,8 +60,8 @@ export const initialNodes = [
     {
         id: 'node-1716869202295',
         position: {
-            x: 134.19499201721365,
-            y: 21.320724549296727,
+            x: 136.46057546737055,
+            y: 19.810335582525454,
         },
         type: 'task',
         data: {
@@ -86,8 +86,8 @@ export const initialNodes = [
         width: 211,
         height: 43,
         style: {
-            width: 211,
-            height: 43,
+            width: 176,
+            height: 37,
         },
     },
     {
@@ -108,8 +108,8 @@ export const initialNodes = [
     {
         id: 'node-1716869456014',
         position: {
-            x: 215.0000000000001,
-            y: 82,
+            x: 216.51038896677136,
+            y: 80.48961103322875,
         },
         type: 'gateway',
         data: {
@@ -123,8 +123,8 @@ export const initialNodes = [
     {
         id: 'node-1716869532373',
         position: {
-            x: 342.3107467286489,
-            y: 4.155373364324419,
+            x: 340.57576540711307,
+            y: 3.2878827035565337,
         },
         type: 'task',
         data: {
@@ -138,8 +138,8 @@ export const initialNodes = [
     {
         id: 'node-1716869553093',
         position: {
-            x: 387.7768668216221,
-            y: 133.75701308540482,
+            x: 351.34225906936985,
+            y: 134.62450374617276,
         },
         type: 'gateway',
         data: {
@@ -153,8 +153,8 @@ export const initialNodes = [
     {
         id: 'node-1716869577709',
         position: {
-            x: 457.0000000000001,
-            y: 104,
+            x: 448.325093392321,
+            y: 111.80741594691119,
         },
         type: 'task',
         data: {
@@ -168,8 +168,8 @@ export const initialNodes = [
     {
         id: 'node-1716869631669',
         position: {
-            x: 642.0000000000001,
-            y: 106,
+            x: 630.7226214100173,
+            y: 112.07243462537537,
         },
         type: 'task',
         data: {
@@ -183,8 +183,8 @@ export const initialNodes = [
     {
         id: 'node-1716869742878',
         position: {
-            x: 800.0000000000001,
-            y: 108,
+            x: 803.4699626430719,
+            y: 112.33745330383954,
         },
         type: 'task',
         data: {
@@ -198,8 +198,8 @@ export const initialNodes = [
     {
         id: 'node-1716869860284',
         position: {
-            x: 325.1949920172136,
-            y: 21.320724549296727,
+            x: 323.6846030504424,
+            y: 19.810335582525454,
         },
         type: 'task',
         data: {
@@ -214,7 +214,7 @@ export const initialNodes = [
         id: 'node-1716870052717',
         position: {
             x: 490.1949920172136,
-            y: 23.320724549296727,
+            y: 19.544752132368558,
         },
         type: 'task',
         data: {
@@ -228,8 +228,8 @@ export const initialNodes = [
     {
         id: 'node-1716870094205',
         position: {
-            x: 670.1949920172137,
-            y: 44.32072454929673,
+            x: 668.6846030504425,
+            y: 39.78955764898292,
         },
         type: 'endEvent',
         data: {
@@ -243,8 +243,8 @@ export const initialNodes = [
     {
         id: 'node-1716870110324',
         position: {
-            x: 960.0000000000001,
-            y: 129,
+            x: 961.734981321536,
+            y: 132.4699626430717,
         },
         type: 'endEvent',
         data: {

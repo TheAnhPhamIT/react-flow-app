@@ -1,34 +1,57 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {
-    useStore,
-    getBezierPath,
     EdgeProps,
     EdgeLabelRenderer,
     useReactFlow,
     BaseEdge,
+    getSmoothStepPath,
 } from 'reactflow';
-import { getDistanceBetweenTwoPoints, getEdgeParams } from '../../../utils';
+import { getDistanceBetweenTwoPoints } from '../../../utils';
 
 import './FloatingEdge.css';
 import { useFocusContent } from '../../../hooks/useFocusContent';
 
-function FloatingEdge({
+export default function FloatingEdge({
     id,
-    source,
-    target,
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
     markerEnd,
     selected = false,
     data,
 }: EdgeProps) {
     const contentRef = useRef<HTMLDivElement>(null);
-    const sourceNode = useStore(
-        useCallback((store) => store.nodeInternals.get(source), [source])
-    );
-    const targetNode = useStore(
-        useCallback((store) => store.nodeInternals.get(target), [target])
-    );
 
     const { setEdges } = useReactFlow();
+
+    // dynamic edge path, without stick to the node's handle point
+    // const sourceNode = useStore(
+    //     useCallback((store) => store.nodeInternals.get(source), [source])
+    // );
+    // const targetNode = useStore(
+    //     useCallback((store) => store.nodeInternals.get(target), [target])
+    // );
+
+    // if (!sourceNode || !targetNode) {
+    //     return null;
+    // }
+
+    // const { sx, sy, tx, ty, sourcePos, targetPos } = getEdgeParams(
+    //     sourceNode,
+    //     targetNode
+    // );
+
+    // const [edgePath, labelX, labelY] = getSmoothStepPath({
+    //     sourceX: sx,
+    //     sourceY: sy,
+    //     sourcePosition: sourcePos,
+    //     targetPosition: targetPos,
+    //     targetX: tx,
+    //     targetY: ty,
+    // });
 
     useFocusContent(selected, contentRef.current);
 
@@ -48,25 +71,21 @@ function FloatingEdge({
         }
     }, [selected, data.label, id, setEdges]);
 
-    if (!sourceNode || !targetNode) {
-        return null;
-    }
-
-    const { sx, sy, tx, ty, sourcePos, targetPos } = getEdgeParams(
-        sourceNode,
-        targetNode
-    );
-
-    const [edgePath, labelX, labelY] = getBezierPath({
-        sourceX: sx,
-        sourceY: sy,
-        sourcePosition: sourcePos,
-        targetPosition: targetPos,
-        targetX: tx,
-        targetY: ty,
+    const [edgePath, labelX, labelY] = getSmoothStepPath({
+        sourceX,
+        sourceY,
+        sourcePosition,
+        targetPosition,
+        targetX,
+        targetY,
     });
 
-    const labelWidth = getDistanceBetweenTwoPoints(sx, sy, tx, ty);
+    const labelWidth = getDistanceBetweenTwoPoints(
+        sourceX,
+        sourceY,
+        targetX,
+        targetY
+    );
 
     return (
         <>
@@ -115,5 +134,3 @@ function FloatingEdge({
         </>
     );
 }
-
-export default FloatingEdge;
