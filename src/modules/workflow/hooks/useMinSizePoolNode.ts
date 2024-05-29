@@ -12,13 +12,38 @@ export function useMinSizePoolNode(
     const { getNodes } = useReactFlow();
     const { minWidth, minHeight } = useMemo(() => {
         const childNodes = getNodes().filter(
-            (node) => node.parentId === nodeId
+            (node) => node.parentId === nodeId && node.type !== 'textNotation'
         );
-        if (childNodes.length <= 0)
+        if (childNodes.length <= 0) {
             return {
                 minWidth: defaultMinWidth,
                 minHeight: defaultMinHeight,
             };
+        }
+
+        // let minX, minY, maxX, maxY;
+        // for (const node of childNodes) {
+        //     const { x, y } = node.positionAbsolute || node.position;
+        //     const { width, height } = node;
+        //     minX = minX === undefined ? x : Math.min(x, minX);
+        //     minY = minY === undefined ? y : Math.min(y, minY);
+        //     maxX =
+        //         maxX === undefined
+        //             ? x + (width || 0)
+        //             : Math.max(maxX, x + (width || 0));
+        //     maxY =
+        //         maxY === undefined
+        //             ? y + (height || 0)
+        //             : Math.max(maxY, y + (height || 0));
+        // }
+
+        // const minHeight = maxY! - minY! + padding * 2 + extraWidth;
+        // const minWidth = maxX! - minX! + padding * 2 + extraHeight;
+
+        // return {
+        //     minHeight,
+        //     minWidth,
+        // };
         const rect = getNodesBounds(childNodes);
 
         return {

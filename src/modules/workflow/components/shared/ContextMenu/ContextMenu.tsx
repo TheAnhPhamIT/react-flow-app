@@ -42,9 +42,10 @@ export default function ContextMenu({
                 },
                 type: nodeType,
                 data: {
-                    label: "on the details panel you can edit the node's label",
+                    label: nodeType,
                 },
                 parentId: node.parentId || '',
+                extent: node.parentId ? 'parent' : undefined,
             };
             setNodes((nodes) => nodes.concat(newNode));
             const newEdge: Edge = {
@@ -70,6 +71,17 @@ export default function ContextMenu({
                 } else {
                     n.extent = 'parent';
                 }
+                return n;
+            })
+        );
+    }, [node, setNodes]);
+
+    const toggleExpand = useCallback(() => {
+        if (node?.type !== 'pool') return;
+        setNodes((nodes) =>
+            nodes.map((n) => {
+                if (n.parentId !== node.id) return n;
+                n.expandParent = !n.expandParent;
                 return n;
             })
         );
@@ -101,7 +113,14 @@ export default function ContextMenu({
                 </>
             )}
             {node?.type === 'pool' && (
-                <button onClick={toggleLockNodes}>toggle lock nodes</button>
+                <>
+                    <button onClick={toggleLockNodes}>
+                        toggle lock children
+                    </button>
+                    <button onClick={toggleExpand}>
+                        toggle expand when move children
+                    </button>
+                </>
             )}
             <button onClick={deleteNode}>delete</button>
         </div>
