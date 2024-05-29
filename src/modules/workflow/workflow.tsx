@@ -39,51 +39,59 @@ export default function Workflow() {
 
     const { getIntersectingNodes, screenToFlowPosition } = useReactFlow();
 
+    const addNodeToPool = useCallback(
+        (node: Node, pool: Node) => {
+            setNodes((ns) =>
+                ns.map((n) => {
+                    if (n.id !== node.id) return n;
+                    n.parentId = pool.id;
+                    n.position = {
+                        x: n.positionAbsolute!.x - pool.position.x,
+                        y: n.positionAbsolute!.y - pool.position.y,
+                    };
+                    n.extent = 'parent';
+                    return n;
+                })
+            );
+        },
+        [setNodes]
+    );
+
+    const removeNodeFromPool = useCallback(
+        (node: Node) => {
+            setNodes((ns) =>
+                ns.map((n) => {
+                    if (n.id !== node.id) return n;
+                    delete n.parentId;
+                    delete n.extent;
+                    delete n.expandParent;
+                    n.position = n.positionAbsolute
+                        ? { ...n.positionAbsolute }
+                        : n.position;
+                    return n;
+                })
+            );
+        },
+        [setNodes]
+    );
+
     const onNodeDragStop = useCallback(
         (
             _: React.MouseEvent<Element, MouseEvent>,
             node: Node<string | undefined>
         ) => {
-            if (node.parentId || node.type === 'pool') return;
+            if (node.type === 'pool') return;
             const intersectionPoolNode = getIntersectingNodes(node).find(
                 (node) => node.type === 'pool'
             );
-            if (intersectionPoolNode) {
-                setNodes((ns) =>
-                    ns.map((n) => {
-                        if (n.id !== node.id) return n;
-                        n.parentId = intersectionPoolNode.id;
-                        n.position = {
-                            x:
-                                n.positionAbsolute!.x -
-                                intersectionPoolNode.position.x,
-                            y:
-                                n.positionAbsolute!.y -
-                                intersectionPoolNode.position.y,
-                        };
-                        n.extent = 'parent';
-                        return n;
-                    })
-                );
+            if (!node.parentId && intersectionPoolNode) {
+                addNodeToPool(node, intersectionPoolNode);
+            } else if (node.parentId && !intersectionPoolNode) {
+                removeNodeFromPool(node);
             }
         },
-        [getIntersectingNodes, setNodes]
+        [getIntersectingNodes, addNodeToPool, removeNodeFromPool]
     );
-
-    // delete node and edges attach to the node when user clicked Backspace key
-    // useKeyDown((e: KeyboardEvent) => {
-    //   if (e.key === "Backspace" && selectedNodeId) {
-    //     setNodes((nodes) => nodes.filter((node) => node.id !== selectedNodeId));
-    //     setEdges((edges) =>
-    //       edges.filter(
-    //         (edge) =>
-    //           edge.source !== selectedNodeId && edge.target !== selectedNodeId
-    //       )
-    //     );
-    //     setSelectedNodeId(null);
-    //     setMenu(null);
-    //   }
-    // });
 
     // create new edge between two nodes when user create new connection
     const onConnect: OnConnect = useCallback(

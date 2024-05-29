@@ -1,10 +1,10 @@
 import { Handle, NodeResizer, Position } from 'reactflow';
-import { CustomNodeProps } from '../types';
+import { CustomNodeProps } from '@/modules/workflow/components/nodes/types';
 import './PoolNode.css';
 import { useRef } from 'react';
-import { useFocusContent } from '../../../hooks/useFocusContent';
-import { useUpdateContent } from '../../../hooks/useUpdateContent';
-import { useMinSizePoolNode } from '../../../hooks/useMinSizePoolNode';
+import { useFocusContent } from '@/modules/workflow/hooks/useFocusContent';
+import { useUpdateContent } from '@/modules/workflow/hooks/useUpdateContent';
+import { useMinSizePoolNode } from '@/modules/workflow/hooks/useMinSizePoolNode';
 
 const POOL_NODE_PADDING = 10;
 const POOL_NODE_MIN_WIDTH = 300;
