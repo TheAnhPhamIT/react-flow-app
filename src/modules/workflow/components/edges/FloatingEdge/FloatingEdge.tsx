@@ -126,6 +126,7 @@ export default function FloatingEdge({
                         margin: '10px 0px',
                         width: labelWidth - 20 + 'px',
                         transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                        backgroundColor: 'white',
                     }}
                 >
                     {data.label}
