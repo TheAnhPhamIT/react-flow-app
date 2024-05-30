@@ -22,7 +22,6 @@ import { Toolbar } from './components/shared/Toolbar/Toolbar';
 import ContextMenu from './components/shared/ContextMenu/ContextMenu';
 import { useContextMenu } from './hooks/useContextMenu';
 import FloatingConnectionLine from './components/connection-line/FloatingConnectionLine';
-// import { DetailsPanel } from './components/shared/DetailsPanel/DetailsPanel';
 import { SearchBar } from './components/shared/SearchBar/SearchBar';
 import EdgeContextMenu from './components/shared/EdgeContextMenu/EdgeContextMenu';
 import { useEdgeContextMenu } from './hooks/useEdgeContextMenu';
@@ -48,7 +47,7 @@ export default function Workflow() {
     const { getIntersectingNodes, screenToFlowPosition } = useReactFlow();
 
     useEffect(() => {
-        const onStore = () => {
+        const onRestore = () => {
             const valStr = localStorage.getItem(
                 REACTFLOW_DATA_LOCALSTORAGE_KEY
             );
@@ -62,7 +61,7 @@ export default function Workflow() {
             }
         };
 
-        onStore();
+        onRestore();
     }, [setEdges, setNodes]);
 
     const onSaveFlow = () => {
@@ -212,7 +211,6 @@ export default function Workflow() {
             connectionMode={ConnectionMode.Loose}
         >
             <Controls />
-            {/* <DetailsPanel /> */}
             {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
             {edgeMenu && (
                 <EdgeContextMenu onClick={onPaneClick} {...edgeMenu} />
