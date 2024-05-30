@@ -89,6 +89,7 @@ export const initialNodes = [
             width: 176,
             height: 37,
         },
+        extent: 'parent',
     },
     {
         id: 'node-1716869419367',
