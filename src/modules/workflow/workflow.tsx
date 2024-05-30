@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
     Controls,
     ReactFlow,
@@ -11,6 +11,7 @@ import {
     Node,
     ConnectionMode,
     Panel,
+    Edge,
 } from 'reactflow';
 
 import 'reactflow/dist/style.css';
@@ -26,6 +27,13 @@ import { SearchBar } from './components/shared/SearchBar/SearchBar';
 import EdgeContextMenu from './components/shared/EdgeContextMenu/EdgeContextMenu';
 import { useEdgeContextMenu } from './hooks/useEdgeContextMenu';
 
+const REACTFLOW_DATA_LOCALSTORAGE_KEY = 'reactFlowData';
+
+type ReactflowData = {
+    nodes: Node[];
+    edges: Edge[];
+};
+
 export default function Workflow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -38,6 +46,33 @@ export default function Workflow() {
     } = useEdgeContextMenu(ref.current!);
 
     const { getIntersectingNodes, screenToFlowPosition } = useReactFlow();
+
+    useEffect(() => {
+        const onStore = () => {
+            const valStr = localStorage.getItem(
+                REACTFLOW_DATA_LOCALSTORAGE_KEY
+            );
+            if (valStr === null) return;
+            try {
+                const flowData = JSON.parse(valStr) as ReactflowData;
+                setNodes(flowData.nodes);
+                setEdges(flowData.edges);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        onStore();
+    }, [setEdges, setNodes]);
+
+    const onSaveFlow = () => {
+        try {
+            const flowDataStr = JSON.stringify({ nodes, edges });
+            localStorage.setItem(REACTFLOW_DATA_LOCALSTORAGE_KEY, flowDataStr);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const addNodeToPool = useCallback(
         (node: Node, pool: Node) => {
@@ -188,6 +223,7 @@ export default function Workflow() {
                 <button onClick={() => console.log(nodes, edges)}>
                     Log nodes and edges
                 </button>
+                <button onClick={onSaveFlow}>Save</button>
                 <div
                     style={{
                         maxWidth: '250px',
